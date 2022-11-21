@@ -8,6 +8,7 @@
 // System includes
 #include <iostream>
 #include <filesystem>
+#include <vector>
 
 // Local includes
 #include "ProgramManager.h"

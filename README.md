@@ -30,7 +30,7 @@ Or clone the repository:
 
 Install gcc-8 in Linux in order to compile:
 
-    ```bash
+    ```
     sudo add-apt-repository ppa:ubuntu-toolchain-r/test
     sudo-apt get update
     sudo apt-get install gcc-8 g++-8
@@ -40,13 +40,13 @@ Install gcc-8 in Linux in order to compile:
 
 Configure:
 
-    ```bash
+    ```
     cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-8 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-8 -S/local/practice/WordConverter -B/local/practice/WordConverter/build -G "Unix Makefiles"
     ```
 
 Compile:
 
-    ```bash
+    ```
     cmake --build ./build --config Debug --target all -j 10 --
     ```
 

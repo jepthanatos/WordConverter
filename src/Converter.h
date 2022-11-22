@@ -27,20 +27,16 @@ namespace wordconverter
     class Converter
     {
     private:
-        Converter();
-        Converter(Converter const &){};
-        void operator=(Converter const &){};
-
         // Maps used in "convertToNumber" function.
         std::map<std::string, int> mapWords;
         std::map<std::string, unsigned int> multipliers;
 
     public:
+        // Default constructor.
+        Converter();
+
         // Destroy Converter.
         virtual ~Converter(){};
-
-        // Get the singleton instance of the Converter.
-        static Converter &getInstance();
 
         // Converts the numbers as words of a sentence into digital numbers.
         std::string convertToNumber(std::string str);

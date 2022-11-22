@@ -39,42 +39,49 @@ using namespace wordconverter;
 
 TEST(TestConverter, convertToNumber)
 {
+    Converter c;
     for (auto word : mapWords)
     {
-        EXPECT_EQ(std::to_string(word.second)+".", Converter::getInstance().convertToNumber(word.first));
+        EXPECT_EQ(std::to_string(word.second)+".", c.convertToNumber(word.first));
     }
 }
 
 TEST(TestConverter, maxNumberInt)
 {
+    Converter c;
     // Max 32 bits signed value 2,147,483,647
     std::string str{
-        "two billion one hundred forty-seven million four hundred eighty-three thousand six hundred forty-seven."};
+        "two billion one hundred forty-seven million four hundred eighty-three thousand six hundred forty-seven."
+    };
     std::string output = "2147483647.";
-    EXPECT_EQ(output, Converter::getInstance().convertToNumber(str));
+    EXPECT_EQ(output, c.convertToNumber(str));
 }
 
 TEST(TestConverter, maxNumberUnsignedInt)
 {
+    Converter c;
     // Max 32 bits unsigned value 4,294,967,295
     std::string str{
-        "four billion two hundred ninety-four million nine hundred sixty-seven thousand two hundred ninety-five."};
+        "four billion two hundred ninety-four million nine hundred sixty-seven thousand two hundred ninety-five."
+    };
     std::string output = "4294967295.";
-    EXPECT_EQ(output, Converter::getInstance().convertToNumber(str));
+    EXPECT_EQ(output, c.convertToNumber(str));
 }
 
 TEST(TestConverter, mixedExample)
 {
+    Converter c;
     // Max 32 bits unsigned value 4,294,967,295
     std::string str{"I have one hundred apples."};
     std::string output = "I have 100 apples.";
-    EXPECT_EQ(output, Converter::getInstance().convertToNumber(str));
+    EXPECT_EQ(output, c.convertToNumber(str));
 }
 
 TEST(TestConverter, mixedBlankSpaces)
 {
+    Converter c;
     // Max 32 bits unsigned value 4,294,967,295
     std::string str{"I have one hundred apples       and one dog     ."};
     std::string output = "I have 100 apples and 1 dog.";
-    EXPECT_EQ(output, Converter::getInstance().convertToNumber(str));
+    EXPECT_EQ(output, c.convertToNumber(str));
 }

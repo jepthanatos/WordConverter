@@ -71,15 +71,6 @@ namespace wordconverter
     }
 
     /*--------------------------------------------------------------------------
-     * Get the singleton instance of the Converter.
-     */
-    Converter &Converter::getInstance()
-    {
-        static Converter instance;
-        return instance;
-    }
-
-    /*--------------------------------------------------------------------------
      * Converts the numbers as words of a sentence into digital numbers.
      */
     std::string Converter::convertToNumber(std::string str)

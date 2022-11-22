@@ -87,10 +87,11 @@ namespace wordconverter
     {
         std::string line;
         std::string result;
+        Converter converter;
 
         while (std::getline(inputFile, line))
         {
-            result = Converter::getInstance().convertToNumber(line);
+            result = converter.convertToNumber(line);
             std::cout << result << std::endl;
             if (outputFile.is_open())
             {

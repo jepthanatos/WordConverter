@@ -5,14 +5,6 @@
 // Description : Main program of a running journal.
 //==============================================================================
 
-// Includes.
-//#include <unistd.h>
-//#include <vector>
-//#include <iostream>
-//#include <chrono>
-//#include <thread>
-//#include <filesystem>
-
 // Local includes.
 #include "ProgramManager.h"
 

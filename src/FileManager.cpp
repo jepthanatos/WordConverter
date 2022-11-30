@@ -2,7 +2,7 @@
 // Name        : FileManager.cpp
 // Author      : Jorge
 // Copyright   : https://creativecommons.org/licenses/by/4.0/
-// Description : Manager of the database files.
+// Description : Manager of the input and output files.
 //==============================================================================
 
 #include "FileManager.h"
@@ -35,14 +35,30 @@ namespace wordconverter
     }
 
     /*--------------------------------------------------------------------------
-     * Start up the FileManager (open files).
+     * Initialize the input file before the start up.
      */
-    void FileManager::startUp(const std::string &input, const std::string &output)
+    void FileManager::initInputFile(const std::string &input)
+    {
+        inputFileName = input;
+    }
+
+    /*--------------------------------------------------------------------------
+     * Initialize the output file before the start up.
+     */
+    void FileManager::initOutputFile(const std::string &output)
+    {
+        outputFileName = output;
+    }
+
+    /*--------------------------------------------------------------------------
+     * Startup the FileManager (open files).
+     */
+    void FileManager::startUp()
     {
         // Open the input file.
         try
         {
-            inputFile.open(input);
+            inputFile.open(inputFileName);
             started = true;
         }
         catch (std::ofstream::failure e)
@@ -53,11 +69,11 @@ namespace wordconverter
         }
 
         // Open the output file.
-        if (output != "")
+        if (outputFileName != "")
         {
             try
             {
-                outputFile.open(output);
+                outputFile.open(outputFileName);
             }
             catch (std::ofstream::failure e)
             {

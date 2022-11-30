@@ -46,7 +46,7 @@ namespace wordconverter
     }
 
     /*--------------------------------------------------------------------------
-     * Start up the LogManager (open logfile).
+     * Startup the LogManager (open logfile).
      */
     void LogManager::startUp()
     {

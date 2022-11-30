@@ -32,8 +32,14 @@ namespace wordconverter
         FileManager(FileManager const &){};
         void operator=(FileManager const &){};
 
+        // Name of the IO files.
+        std::string inputFileName;
+        std::string outputFileName;
+
+        // IO Files.
         std::ifstream inputFile;
         std::ofstream outputFile;
+
 
     public:
         // If files are open, close them.
@@ -42,10 +48,16 @@ namespace wordconverter
         // Get the one and only instance of the FileManager.
         static FileManager &getInstance();
 
-        // Start up the FileManager (open database files).
-        void startUp(const std::string &input, const std::string &output);
+        // Initialize the input file before the start up.
+        void initInputFile(const std::string &input);
 
-        // Shut down the FileManager (close database files).
+        // Initialize the output file before the start up.
+        void initOutputFile(const std::string &output);
+
+        // Startup the FileManager (open files).
+        void startUp();
+
+        // Shut down the FileManager (close files).
         void shutDown();
 
         // Function to convert a file with written numbers to digital numbers.

@@ -49,7 +49,7 @@ namespace wordconverter
         // Get the one and only instance of the LogManager.
         static LogManager &getInstance();
 
-        // Start up the LogManager (open logfile).
+        // Startup the LogManager (open logfile).
         void startUp();
 
         // Shut down the LogManager (close logfile).

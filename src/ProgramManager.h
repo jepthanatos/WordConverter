@@ -30,9 +30,6 @@ namespace wordconverter
         ProgramManager(ProgramManager const &){};
         void operator=(ProgramManager const &){};
 
-        std::string inputFile;
-        std::string outputFile;
-
     public:
         ~ProgramManager(){};
 
@@ -42,7 +39,7 @@ namespace wordconverter
         // Initialize the program by parsing the program arguments.
         int initialization(int argc, char *argv[]);
 
-        // Start up the program services.
+        // Startup the program services.
         void startUp();
 
         // Shut down the program services.

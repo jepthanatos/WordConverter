@@ -38,10 +38,10 @@ namespace wordconverter
         std::string getType() const;
 
         // Startup Manager.
-        virtual void startUp(){};
+        virtual void startUp() = 0;
 
         // Shutdown Manager.
-        virtual void shutDown(){};
+        virtual void shutDown() = 0;
 
         // Return true when startUp() was executed ok, else false.
         bool isStarted() const;

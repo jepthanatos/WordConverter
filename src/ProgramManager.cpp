@@ -65,7 +65,7 @@ namespace wordconverter
             return EXIT_FAILURE;
         }
 
-        // Check if the input file exits, else exit.
+        // Check if the input file exist, else exit.
         if (!std::filesystem::exists(args.at(1)))
         {
             std::cout << usage << std::endl;
@@ -84,7 +84,7 @@ namespace wordconverter
             }
             else
             {
-                inputFile = args.at(1);
+                FileManager::getInstance().initInputFile(std::string(args.at(1)));
             }
         }
 
@@ -99,7 +99,7 @@ namespace wordconverter
             }
             else
             {
-                outputFile = args.at(3);
+                FileManager::getInstance().initOutputFile(std::string(args.at(3)));
             }
         }
 
@@ -107,13 +107,13 @@ namespace wordconverter
     }
 
     /*--------------------------------------------------------------------------
-     * Start up the program services.
+     * Startup the program services.
      */
     void ProgramManager::startUp()
     {
         LogManager::getInstance().startUp();
         LogManager::getInstance().writeLog(E_LEVEL::DEBUG, "Starting services...");
-        FileManager::getInstance().startUp(inputFile, outputFile);
+        FileManager::getInstance().startUp();
         started = LogManager::getInstance().isStarted() and
                   FileManager::getInstance().isStarted();
     }

@@ -8,9 +8,9 @@
 #ifndef __Converter_H__
 #define __Converter_H__
 
-// System includes
+// System includes.
 #include <string>
-#include <map>
+#include <unordered_map>
 
 //==============================================================================
 /* Converter */
@@ -28,8 +28,8 @@ namespace wordconverter
     {
     private:
         // Maps used in "convertToNumber" function.
-        std::map<std::string, int> mapWords;
-        std::map<std::string, unsigned int> multipliers;
+        std::unordered_map<std::string, int> mapWords;
+        std::unordered_map<std::string, unsigned int> multipliers;
 
     public:
         // Default constructor.

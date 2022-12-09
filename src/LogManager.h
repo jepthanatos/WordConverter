@@ -13,6 +13,7 @@
 #include <fstream>
 
 // Engine includes.
+#include "Singleton.h"
 #include "Manager.h"
 
 //==============================================================================
@@ -26,28 +27,23 @@ namespace wordconverter
 {
     const std::string LOGFILE_NAME = "wordconverter.log";
 
-    enum E_LEVEL
+    enum class Level
     {
-        DEBUG = INT8_MAX,
-        INFO = INT32_MAX,
+        Debug,
+        Info,
+        Warning,
+        Error
     };
 
-    class LogManager : public Manager
+    class LogManager : public Manager, public Singleton<LogManager>
     {
     private:
-        LogManager();
-        LogManager(LogManager const &){};
-        void operator=(LogManager const &){};
-
         std::ofstream logFile;
-        int logLevel;
+        Level logLevel;
 
     public:
         // If logfile is open, close it.
         ~LogManager();
-
-        // Get the one and only instance of the LogManager.
-        static LogManager &getInstance();
 
         // Startup the LogManager (open logfile).
         void startUp();
@@ -56,13 +52,13 @@ namespace wordconverter
         void shutDown();
 
         // Write to logfile.
-        void writeLog(int level, const std::string);
+        void writeLog(Level level, const std::string &message);
 
         // Get the log level.
-        int getLevel();
+        Level getLevel() const;
 
         // Set the log level.
-        void setLevel(int value);
+        void setLevel(Level value);
     };
 }
 //------------------------------------------------------------------------------

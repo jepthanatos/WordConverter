@@ -20,29 +20,12 @@
 namespace wordconverter
 {
     /*--------------------------------------------------------------------------
-     * Constructor.
-     */
-    LogManager::LogManager()
-    {
-        Manager::setType("LogManager");
-    }
-
-    /*--------------------------------------------------------------------------
      * Destructor.
      */
     LogManager::~LogManager()
     {
         if (logFile.is_open())
             logFile.close();
-    }
-
-    /*--------------------------------------------------------------------------
-     * Get the one and only instance of the LogManager.
-     */
-    LogManager &LogManager::getInstance()
-    {
-        static LogManager instance;
-        return instance;
     }
 
     /*--------------------------------------------------------------------------
@@ -53,7 +36,7 @@ namespace wordconverter
         try
         {
             logFile.open(LOGFILE_NAME, std::ofstream::out);
-            logLevel = E_LEVEL::DEBUG;
+            logLevel = Level::Debug;
             started = true;
         }
         catch (std::ofstream::failure e)
@@ -74,30 +57,28 @@ namespace wordconverter
     /*--------------------------------------------------------------------------
      * Write to logfile.
      */
-    void LogManager::writeLog(int level, const std::string message)
+    void LogManager::writeLog(Level level, const std::string &message)
     {
         // Lambda to generate pretty time for logs.
         auto prettyTime = []()
         {
-            const auto now = std::chrono::system_clock::now();
-            const auto nowAsTimeT = std::chrono::system_clock::to_time_t(now);
-            const auto nowMs =
-                std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
-            std::stringstream nowSs;
-            nowSs
-                << std::put_time(std::localtime(&nowAsTimeT), "%a %b %d %Y %T")
-                << '.' << std::setfill('0') << std::setw(3) << nowMs.count();
-            return nowSs.str();
+            auto now = std::chrono::system_clock::now();
+            auto time = std::chrono::system_clock::to_time_t(now);
+            std::stringstream stream;
+            stream << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S");
+            return stream.str();
         };
 
-        if (level >= logLevel)
+        if (level >= logLevel) {
             logFile << prettyTime() << " : " << message << std::endl;
+            logFile.flush();
+        }
     }
 
     /*--------------------------------------------------------------------------
      * Get the log level.
      */
-    int LogManager::getLevel()
+    Level LogManager::getLevel() const
     {
         return logLevel;
     }
@@ -105,7 +86,7 @@ namespace wordconverter
     /*--------------------------------------------------------------------------
      * Set the log level.
      */
-    void LogManager::setLevel(int value)
+    void LogManager::setLevel(Level value)
     {
         logLevel = value;
     }

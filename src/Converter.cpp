@@ -75,20 +75,21 @@ namespace wordconverter
      */
     std::string Converter::convertToNumber(std::string str)
     {
-        LogManager::getInstance().writeLog(E_LEVEL::DEBUG, "Sentence to be converted: " + str);
+        LogManager::getInstance().writeLog(Level::Debug, "Sentence to be converted: " + str);
 
         // String to be returned.
         std::string finalString;
 
         // Check if the sentence is empty and return an empty string.
-        if (str.size() == 0)
+        if (str.empty())
             return finalString;
 
         // Replace in the sentence all the '-' by a blank space.
         std::replace(str.begin(), str.end(), '-', ' ');
 
         // Replace the last '.' by a blank space.
-        std::replace(str.end() - 1, str.end(), '.', ' ');
+        if (!str.empty() && str.back() == '.')
+            str.pop_back();
 
         // Resulting number.
         unsigned int cookedNumber = 0;
@@ -96,10 +97,8 @@ namespace wordconverter
 
         // Convert the incoming string to a vector.
         std::istringstream iss(str);
-        std::vector<std::string> tokens;
-        std::copy(std::istream_iterator<std::string>(iss),
-                  std::istream_iterator<std::string>(),
-                  std::back_inserter(tokens));
+        std::vector<std::string> tokens(std::istream_iterator<std::string>{iss},
+                                        std::istream_iterator<std::string>());
 
         // Flag to know if when you get a word the previous was a number.
         bool previousIsNumber = false;
@@ -148,9 +147,9 @@ namespace wordconverter
         if (previousIsNumber)
             finalString += std::to_string(finalNumber);
         else
-            finalString.erase(finalString.end() - 1, finalString.end());
+            finalString.pop_back();
 
-        LogManager::getInstance().writeLog(E_LEVEL::DEBUG, "Result: " + finalString);
+        LogManager::getInstance().writeLog(Level::Debug, "Result: " + finalString);
 
         return finalString + ".";
     }

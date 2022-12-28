@@ -11,7 +11,8 @@
 // System includes.
 #include <string>
 
-// Engine includes.
+// Local includes.
+#include "Singleton.h"
 #include "Manager.h"
 
 //==============================================================================
@@ -23,18 +24,10 @@
  */
 namespace wordconverter
 {
-    class ProgramManager : public Manager
+    class ProgramManager : public Manager, public Singleton<ProgramManager>
     {
-    private:
-        ProgramManager();
-        ProgramManager(ProgramManager const &){};
-        void operator=(ProgramManager const &){};
-
     public:
         ~ProgramManager(){};
-
-        // Get the singleton instance of the ProgramManager.
-        static ProgramManager &getInstance();
 
         // Initialize the program by parsing the program arguments.
         int initialization(int argc, char *argv[]);

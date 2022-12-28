@@ -13,7 +13,8 @@
 #include <iostream>
 #include <string>
 
-// Engine includes.
+// Local includes.
+#include "Singleton.h"
 #include "Manager.h"
 
 //==============================================================================
@@ -25,13 +26,9 @@
  */
 namespace wordconverter
 {
-    class FileManager : public Manager
+    class FileManager : public Manager, public Singleton<FileManager>
     {
     private:
-        FileManager();
-        FileManager(FileManager const &){};
-        void operator=(FileManager const &){};
-
         // Name of the IO files.
         std::string inputFileName;
         std::string outputFileName;
@@ -43,10 +40,7 @@ namespace wordconverter
 
     public:
         // If files are open, close them.
-        ~FileManager(){};
-
-        // Get the one and only instance of the FileManager.
-        static FileManager &getInstance();
+        ~FileManager();
 
         // Initialize the input file before the start up.
         void initInputFile(const std::string &input);

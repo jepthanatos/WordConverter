@@ -18,20 +18,11 @@
 namespace wordconverter
 {
     /*--------------------------------------------------------------------------
-     * Constructor.
+     * Destructor
      */
-    FileManager::FileManager()
+    FileManager::~FileManager()
     {
-        Manager::setType("FileManager");
-    }
-
-    /*--------------------------------------------------------------------------
-     * Get the one and only instance of the FileManager.
-     */
-    FileManager &FileManager::getInstance()
-    {
-        static FileManager instance;
-        return instance;
+        shutDown();
     }
 
     /*--------------------------------------------------------------------------
@@ -63,8 +54,8 @@ namespace wordconverter
         }
         catch (std::ofstream::failure e)
         {
-            LogManager::getInstance().writeLog(E_LEVEL::DEBUG, "Error opening the input file");
-            LogManager::getInstance().writeLog(E_LEVEL::DEBUG, e.what());
+            LogManager::getInstance().writeLog(Level::Debug, "Error opening the input file");
+            LogManager::getInstance().writeLog(Level::Debug, e.what());
             std::cerr << e.what() << std::endl;
         }
 
@@ -77,8 +68,8 @@ namespace wordconverter
             }
             catch (std::ofstream::failure e)
             {
-                LogManager::getInstance().writeLog(E_LEVEL::DEBUG, "Error opening the output file");
-                LogManager::getInstance().writeLog(E_LEVEL::DEBUG, e.what());
+                LogManager::getInstance().writeLog(Level::Debug, "Error opening the output file");
+                LogManager::getInstance().writeLog(Level::Debug, e.what());
                 std::cerr << e.what() << std::endl;
             }
         }

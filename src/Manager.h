@@ -8,6 +8,7 @@
 #ifndef __MANAGER_H__
 #define __MANAGER_H__
 
+// System includes.
 #include <string>
 
 //==============================================================================
@@ -27,11 +28,13 @@ namespace wordconverter
     protected:
         bool started; // True when started sucessfully.
 
+        // Default constructor.
+        Manager();
+
         // Set type identifier of Manager.
         void setType(std ::string value);
 
     public:
-        Manager();
         virtual ~Manager(){};
 
         // Get type identifier of Manager.

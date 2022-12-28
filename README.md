@@ -30,7 +30,7 @@ Or clone the repository:
 
 ## Compile in Windows
 
-At least GCC 8 and CMake are needed.
+At least GCC 8 and CMake 3.12 are needed.
 
 Install MSYS2 from https://www.msys2.org/
 
@@ -47,19 +47,20 @@ Follow the update guide: https://www.msys2.org/docs/updating/
 Configure using Cmake:
 
 ```
-    "C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=G:\Programs\MSYS2\ucrt64\bin\x86_64-w64-mingw32-gcc.exe -DCMAKE_CXX_COMPILER:FILEPATH=G:\Programs\MSYS2\ucrt64\bin\x86_64-w64-mingw32-g++.exe -Sc:/Users/Thanatos/Desktop/repos/WordConverter -Bc:/<directory>/WordConverter/build -G "MinGW Makefiles"
+    "C:\Program Files\CMake\bin\cmake.exe" -S. -B./build
+
 ```
 **Pay attention to directories**
 
 Compile:
 
 ```
-    "C:\Program Files\CMake\bin\cmake.exe" --build c:<directory>/WordConverter/build --config Debug --target all -j 6 --
+    "C:\Program Files\CMake\bin\cmake.exe" --build ./build --target all
 ```
 **Pay attention to directories**
 ## Compile in Linux
 
-At least GCC 8 and CMake are needed.
+At least GCC 8 and CMake 3.12 are needed.
 
 Install GCC 8:
 
@@ -72,14 +73,14 @@ Install GCC 8:
 Configure using Cmake:
 
 ```
-    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-8 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-8 -S/<directory>/WordConverter -B/<directory>/WordConverter/build -G "Unix Makefiles"
+    cmake -S. -B./build
 ```
 **Pay attention to directories**
 
 Compile:
 
 ```
-    cmake --build ./build --config Debug --target all -j 10 --
+    cmake --build ./build --target all
 ```
 **Pay attention to directories**
 ## Usage

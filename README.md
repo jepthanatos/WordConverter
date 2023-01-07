@@ -39,7 +39,7 @@ https://github.com/msys2/msys2-installer/releases/download/2022-10-28/msys2-x86_
 On the open console launch this command:
 
 ```
-    pacman -S mingw-w64-ucrt-x86_64-gcc
+pacman -S mingw-w64-ucrt-x86_64-gcc
 ```
 
 Follow the update guide: https://www.msys2.org/docs/updating/
@@ -47,7 +47,7 @@ Follow the update guide: https://www.msys2.org/docs/updating/
 Configure using Cmake:
 
 ```
-    "C:\Program Files\CMake\bin\cmake.exe" -S. -B./build
+"C:\Program Files\CMake\bin\cmake.exe" -S. -B./build
 
 ```
 **Pay attention to directories**
@@ -55,7 +55,7 @@ Configure using Cmake:
 Compile:
 
 ```
-    "C:\Program Files\CMake\bin\cmake.exe" --build ./build --target all
+"C:\Program Files\CMake\bin\cmake.exe" --build ./build --target all
 ```
 **Pay attention to directories**
 ## Compile in Linux
@@ -65,22 +65,22 @@ At least GCC 8 and CMake 3.12 are needed.
 Install GCC 8:
 
 ```
-    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-    sudo-apt get update
-    sudo apt-get install gcc-8 g++-8
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo-apt get update
+sudo apt-get install gcc-8 g++-8
 ```
 
 Configure using Cmake:
 
 ```
-    cmake -S. -B./build
+cmake -S. -B./build
 ```
 **Pay attention to directories**
 
 Compile:
 
 ```
-    cmake --build ./build --target all
+cmake --build ./build --target all
 ```
 **Pay attention to directories**
 ## Usage
@@ -94,24 +94,24 @@ Compile:
 Expected output:
 
 ```
-    [==========] Running 5 tests from 1 test suite.
-    [----------] Global test environment set-up.
-    [----------] 5 tests from TestConverter
-    [ RUN      ] TestConverter.convertToNumber
-    [       OK ] TestConverter.convertToNumber (0 ms)
-    [ RUN      ] TestConverter.maxNumberInt
-    [       OK ] TestConverter.maxNumberInt (0 ms)
-    [ RUN      ] TestConverter.maxNumberUnsignedInt
-    [       OK ] TestConverter.maxNumberUnsignedInt (0 ms)
-    [ RUN      ] TestConverter.mixedExample
-    [       OK ] TestConverter.mixedExample (0 ms)
-    [ RUN      ] TestConverter.mixedBlankSpaces
-    [       OK ] TestConverter.mixedBlankSpaces (0 ms)
-    [----------] 5 tests from TestConverter (0 ms total)
+[==========] Running 5 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 5 tests from TestConverter
+[ RUN      ] TestConverter.convertToNumber
+[       OK ] TestConverter.convertToNumber (0 ms)
+[ RUN      ] TestConverter.maxNumberInt
+[       OK ] TestConverter.maxNumberInt (0 ms)
+[ RUN      ] TestConverter.maxNumberUnsignedInt
+[       OK ] TestConverter.maxNumberUnsignedInt (0 ms)
+[ RUN      ] TestConverter.mixedExample
+[       OK ] TestConverter.mixedExample (0 ms)
+[ RUN      ] TestConverter.mixedBlankSpaces
+[       OK ] TestConverter.mixedBlankSpaces (0 ms)
+[----------] 5 tests from TestConverter (0 ms total)
 
-    [----------] Global test environment tear-down
-    [==========] 5 tests from 1 test suite ran. (0 ms total)
-    [  PASSED  ] 5 tests.
+[----------] Global test environment tear-down
+[==========] 5 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 5 tests.
 ```
 ## License
 
